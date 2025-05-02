@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Text.Json;
+//using System.Text.Json;
+using Newtonsoft.Json;
+
 
 namespace Redo_Wk8Ex2
 {
@@ -44,7 +46,7 @@ namespace Redo_Wk8Ex2
         public static void SerializeBookToJson(Book book, string filePath)
         {
             // serialize the book object to a json string
-            string jsonString = JsonSerializer.Serialize(book);
+            string jsonString = JsonConvert.SerializeObject(book, Formatting.Indented);
             // write the json string to a file
             File.WriteAllText(filePath, jsonString);
         }
@@ -54,7 +56,7 @@ namespace Redo_Wk8Ex2
             // read the json string from the file
             string jsonString = File.ReadAllText(filePath);
             // deserialize the json string to a book object
-            Book book = JsonSerializer.Deserialize<Book>(jsonString);
+            Book book = JsonConvert.DeserializeObject<Book>(jsonString);
             return book;
         }
     }
