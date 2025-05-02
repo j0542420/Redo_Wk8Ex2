@@ -46,6 +46,10 @@ namespace Redo_Wk8Ex2
         public static void SerializeBookToJson(Book book, string filePath)
         {
             // serialize the book object to a json string
+            // using System.Text.Json
+            // string jsonString = JsonSerializer.Serialize(book);
+
+            // using Newtonsoft.Json
             string jsonString = JsonConvert.SerializeObject(book, Formatting.Indented);
             // write the json string to a file
             File.WriteAllText(filePath, jsonString);
@@ -55,7 +59,10 @@ namespace Redo_Wk8Ex2
         {
             // read the json string from the file
             string jsonString = File.ReadAllText(filePath);
-            // deserialize the json string to a book object
+            // deserialize the json string to a book object using System.Text.Json
+            // Book book = JsonSerializer.Deserialize<Book>(jsonString);
+
+            // using Newtonsoft.Json
             Book book = JsonConvert.DeserializeObject<Book>(jsonString);
             return book;
         }
